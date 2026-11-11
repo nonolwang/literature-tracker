@@ -1,0 +1,56 @@
+{
+  "poverty": {
+    "name_cn": "贫困与收入分配",
+    "icon": "💸",
+    "keywords_en": ["poverty", "poor", "impoverish", "destitution", "income distribution", "income inequality", "gini", "redistribut", "social assistance", "welfare", "minimum income", "basic needs", "vulnerab", "multidimensional poverty", "poverty alleviat", "poverty trap", "deprivat"],
+    "keywords_cn": ["贫困", "脱贫", "扶贫", "低收入", "收入分配", "收入差距", "基尼系数", "收入不平等", "弱势群体", "低保", "帮扶"]
+  },
+  "insurance": {
+    "name_cn": "保险与社会保障",
+    "icon": "🛡️",
+    "keywords_en": ["pension", "retirement", "social security", "social insurance", "health insurance", "medical insurance", "unemployment insurance", "social protection", "safety net", "old-age", "retirement saving", "disability insurance", "copay", "medicare", "medicaid"],
+    "keywords_cn": ["养老保险", "社会保障", "医疗保险", "退休", "养老金", "社保", "医保", "失业保险", "工伤保险", "新农合", "新农保", "社会救助", "低保制度"]
+  },
+  "employment": {
+    "name_cn": "就业与劳动力",
+    "icon": "👥",
+    "keywords_en": ["employment", "unemployment", "labor market", "labour market", "labor force", "labour force", "wage", "migration", "migrant", "workforce", "underemployment", "labor supply", "labour supply", "labor demand", "hukou", "household registration", "remittances", "informal employment", "gig economy"],
+    "keywords_cn": ["就业", "失业", "劳动力", "农民工", "外出务工", "工资", "打工", "劳动力转移", "灵活就业", "非农就业", "返乡", "户籍", "人口流动", "劳动参与"]
+  },
+  "econometrics": {
+    "name_cn": "计量经济学方法",
+    "icon": "📊",
+    "keywords_en": ["difference-in-difference", "difference in difference", "regression discontinuit", "instrumental variable", "propensity score", "matching", "synthetic control", "panel data", "fixed effect", "random effect", "causal inference", "causal effect", "treatment effect", "staggered", "event study", "triple difference", "sensitivity analysis", "machine learning", "random forest", "lasso", "deep learning", "neural network", "natural experiment", "quasi-experiment"],
+    "keywords_cn": ["双重差分", "断点回归", "工具变量", "倾向得分匹配", "合成控制", "面板数据", "因果推断", "处理效应", "倍差法", "事件研究法", "三重差分", "机器学习", "随机森林", "因果效应", "固定效应"]
+  },
+  "development": {
+    "name_cn": "发展经济学",
+    "icon": "🌍",
+    "keywords_en": ["development economic", "economic development", "developing countr", "emerging econom", "foreign direct investment", "FDI", "trade liberaliz", "industrializ", "urbaniz", "structural transform", "foreign aid", "microcredit", "microfinance", "randomized controlled trial", "RCT", "institution", "governance", "corruption", "human capital", "education", "health outcome"],
+    "keywords_cn": ["发展经济学", "发展中国家", "经济增长", "城镇化", "工业化", "结构转型", "外商直接投资", "贸易自由化", "制度", "治理", "人力资本", "微型金融"]
+  },
+  "gender": {
+    "name_cn": "性别与不平等",
+    "icon": "⚖️",
+    "keywords_en": ["gender", "women", "female", "feminist", "gender gap", "gender inequal", "gender parity", "domestic violence", "empowerment", "son preference", "sex ratio", "fertility", "maternal", "child labor", "early childhood", "discriminat", "equal opportunity"],
+    "keywords_cn": ["性别", "女性", "妇女", "性别平等", "性别歧视", "生育", "人口政策", "计划生育", "留守儿童", "性别差距", "出生性别比", "家庭暴力", "女性赋权"]
+  },
+  "rural": {
+    "name_cn": "农村与农业经济",
+    "icon": "🌾",
+    "keywords_en": ["rural", "agricultur", "farm", "crop", "land tenure", "land right", "land reform", "food security", "food pric", "grain", "irrigat", "fertiliz", "climate change", "cooperative", "collective", "village", "peasant", "agrarian", "sustainable agricultur"],
+    "keywords_cn": ["农村", "农业", "农民", "土地", "耕地", "粮食", "乡村振兴", "土地流转", "农业现代化", "合作社", "集体", "粮食安全", "农村发展", "新农村建设", "城镇化", "城乡", "三权分置"]
+  },
+  "greendevelopment": {
+    "name_cn": "农业绿色发展与耕地质量保护",
+    "icon": "🌿",
+    "keywords_en": ["green development", "green agricultur", "sustainable agricultur", "green production", "green transformation", "eco-agricultur", "ecological agricultur", "low-carbon agricultur", "arable land quality", "cultivated land quality", "soil quality", "soil health", "soil degradation", "soil conservation", "land degradation", "land protection", "farmland protection", "black soil", "soil erosion", "soil pollution", "heavy metal pollution", "agricultural non-point source pollution", "pesticide reduction", "fertilizer reduction", "green manure", "crop rotation", "conservation tillage", "no-till", "organic farming", "agricultural green development", "cultivated land", "arable land", "farmland quality", "high-standard farmland", "land consolidation"],
+    "keywords_cn": ["农业绿色发展", "绿色发展", "绿色农业", "绿色生产", "绿色转型", "生态农业", "低碳农业", "循环农业", "耕地质量", "耕地保护", "耕地质量保护", "耕地质量提升", "土壤健康", "土壤退化", "土壤侵蚀", "土壤污染", "黑土地", "黑土保护", "水土保持", "高标准农田", "化肥减量", "农药减量", "有机肥", "绿肥", "轮作", "保护性耕作", "免耕", "土地整治", "农地保护", "面源污染", "农业面源污染", "地力", "耕地地力"]
+  },
+  "realestate": {
+    "name_cn": "房地产与住房",
+    "icon": "🏠",
+    "keywords_en": ["real estate", "housing market", "house price", "home price", "mortgage", "homeownership", "affordable housing", "housing policy", "housing bubble", "property tax", "residential", "housing wealth", "housing inequality", "housing tenure", "housing demand", "housing supply", "housing affordability", "land price", "land market", "real estate market", "real estate investment"],
+    "keywords_cn": ["房地产", "房价", "住房", "楼市", "购房", "房贷", "住房政策", "保障房", "公租房", "限购", "房产税", "土地财政", "棚改", "住房公积金", "租房", "房屋", "不动产", "住宅", "安居", "城中村", "土地出让"]
+  }
+}

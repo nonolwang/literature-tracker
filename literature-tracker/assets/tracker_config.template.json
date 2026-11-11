@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "storage": {
+    "reading_list": "reading_list.jsonl",
+    "state": "tracker_state.json"
+  },
+  "interests": {
+    "keywords": [
+      "green agricultural development",
+      "cultivated land quality"
+    ],
+    "arxiv_categories": ["econ.GN", "econ.EM"],
+    "use_journal_rss": true,
+    "journal_sources_file": "journal_sources.json",
+    "journal_tiers": ["A+", "A", "B+"]
+  },
+  "email": {
+    "smtp_host": "smtp.qq.com",
+    "smtp_port": 465,
+    "use_ssl": true,
+    "username": "",
+    "password_env": "QQ_SMTP_AUTH_CODE",
+    "from_addr": "",
+    "to": []
+  },
+  "schedule": {
+    "frequency_days": 3,
+    "note": "定时推送由系统 launchd/cron 执行，配置方法见技能 references/push-setup.md"
+  }
+}
