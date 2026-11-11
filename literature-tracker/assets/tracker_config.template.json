@@ -5,14 +5,14 @@
     "state": "tracker_state.json"
   },
   "interests": {
-    "keywords": [
-      "green agricultural development",
-      "cultivated land quality"
-    ],
-    "arxiv_categories": ["econ.GN", "econ.EM"],
-    "use_journal_rss": true,
-    "journal_sources_file": "journal_sources.json",
-    "journal_tiers": ["A+", "A", "B+"]
+    "_keywords_comment": "从你的研究方向提炼的英文检索词，3-8 组，例：\"soil carbon sequestration\"",
+    "keywords": [],
+    "_arxiv_comment": "你的领域对应的 arXiv 分类，如 cs.LG / q-bio.QM / econ.GN；留空则检索全库",
+    "arxiv_categories": [],
+    "_rss_comment": "有特定期刊 RSS 源时启用；journal_sources_file 指向按层级分组的期刊源 JSON（格式见 assets/examples/ag-econ-journal-sources.json）",
+    "use_journal_rss": false,
+    "journal_sources_file": "",
+    "journal_tiers": []
   },
   "email": {
     "smtp_host": "smtp.qq.com",

@@ -4,7 +4,7 @@
 
 仅依赖 Python 标准库。用法：
   python3 fetch_papers.py --config tracker_config.json --state tracker_state.json --output new.jsonl
-  python3 fetch_papers.py --keywords "cultivated land quality,green agriculture" --days 30 --output new.jsonl
+  python3 fetch_papers.py --keywords "soil carbon sequestration" --days 30 --output new.jsonl
 
 退出码：0 = 至少一个来源成功；1 = 参数或输入错误；2 = 所有来源均失败。
 """
@@ -23,7 +23,7 @@ UA = {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit
 ATOM_NS = {"a": "http://www.w3.org/2005/Atom"}
 SKILL_DIR = None  # 由调用方通过 --config 相对路径或默认 assets 定位
 
-DEFAULT_ARXIV_CATEGORIES = ["econ.GN", "econ.EM", "econ.TH"]
+DEFAULT_ARXIV_CATEGORIES = []  # 空列表 = 不限制 arXiv 分类，检索全库
 
 
 def http_get(url, timeout=30):
@@ -101,7 +101,10 @@ def fetch_arxiv(keywords, since, categories, per_kw_limit):
     records, ok = [], False
     cat_q = " OR ".join("cat:%s" % c for c in categories)
     for kw in keywords:
-        q = '(%s) AND all:"%s"' % (cat_q, kw)
+        if cat_q:
+            q = '(%s) AND all:"%s"' % (cat_q, kw)
+        else:
+            q = 'all:"%s"' % kw
         params = {
             "search_query": q, "start": 0, "max_results": min(per_kw_limit, 50),
             "sortBy": "submittedDate", "sortOrder": "descending",

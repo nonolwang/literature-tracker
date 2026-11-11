@@ -1,61 +1,69 @@
 # literature-tracker
 
-面向科研工作流的**文献追踪与推送技能（Skill）**：根据你的参考文献清单或研究方向搭建文献库，持续追踪学界最新动态，支持文献精读讲解与邮箱定期推送。
+面向所有学科的**个人文献追踪助手（Skill）**：给它一份参考文献清单，或者只说一个研究方向，就能帮你搭建文献库、追踪最新论文、精读讲解，并把新文献简报定期推送到邮箱。
 
-本技能由网站项目 [Stardy Valley 农经学术追踪系统](https://github.com/nonolwang/stardy-valley) 转化而来：把原网站（Flask + SQLite + 定时任务）背后的工作流沉淀为一套可在对话中按需执行的 Skill，不再依赖服务器、数据库和付费 API。
+## 它能帮你做什么
 
-## 功能
+| 能力 | 你说 | 你得到 |
+|---|---|---|
+| 📚 建文献库 | "帮我搭建*土壤碳汇*方向的文献库" 或粘贴一份参考文献清单 | `reading_list.jsonl`：标题、作者、期刊、日期、DOI、摘要齐全的结构化清单 + 主题分布概览 |
+| 🔍 追新文献 | "看看最近有什么新文献" | 距上次更新以来的新论文，按主题归类、按相关性排序，去重后并入清单 |
+| 📖 精读讲解 | "讲讲清单里第 3 篇" | 一页纸讲解：研究问题、方法、核心结果、局限、和你研究方向的关系 |
+| 📮 邮箱推送 | "把本周新文献发我邮箱" | HTML 文献简报邮件；也可配置定时任务自动推送 |
+| 💬 研究讨论 | "这几篇的方法有什么区别，还有什么空白" | 围绕库中文献的讨论，结论可写回清单长期积累 |
 
-| 能力 | 实现方式 |
-|---|---|
-| 📥 文献抓取 | arXiv API + 89 个经管期刊 RSS（按 A+/A/B+/B 层级裁剪）+ OpenAlex（免 API key），增量抓取、自动去重 |
-| 🗂️ 梳理归类 | 9 个研究方向的中英文关键词词表（可自定义），确定性分类 + 智能体相关性排序 |
-| 📝 整理归纳 | 智能体按精读模板输出：研究问题、识别策略、核心结果、局限、与个人方向的相关性 |
-| 📮 更新推送 | QQ/163/Gmail SMTP 发送 HTML 简报，支持 launchd/cron 定时无人值守推送 |
-| 💬 研究讨论 | 围绕文献库的选题、方法、研究空白讨论，结论可回写为条目笔记 |
+## 上手流程
 
-## 特点
-
-- **零依赖**：三个脚本只用 Python 标准库，无需 `pip install`
-- **数据在你手里**：文献清单是项目目录下的 `reading_list.jsonl`，纯文本、可版本管理
-- **凭据安全**：邮箱授权码只走环境变量，不写入任何文件
+```
+1. 初始化（一次性，约 2 分钟）   告诉它研究方向或粘贴参考文献（+ 邮箱，可选）
+2. 建库                        确认它整理出的第一版文献清单
+3. 日常使用                    一句话指令：更新 / 精读 / 推送
+4. 自动化（可选）              配一次 launchd/cron，之后简报定期自动到达
+```
 
 ## 安装
 
-把 `literature-tracker/` 目录复制到技能扫描根目录即可：
+把 `literature-tracker/` 目录复制到技能扫描根目录：
 
 ```bash
-cp -R literature-tracker ~/.bohrium/skills/literature-tracker
+git clone https://github.com/nonolwang/literature-tracker.git
+cp -R literature-tracker/literature-tracker ~/.bohrium/skills/literature-tracker
 ```
 
-新开对话后，对智能体说"帮我搭建 XX 方向的文献追踪"即可触发，首次使用会引导你完成初始化（研究方向、期刊范围、邮箱）。
+新开对话后说"帮我搭建 XX 方向的文献追踪"即可触发，首次使用会引导你完成初始化。
+
+## 特点
+
+- **学科无关**：检索关键词、主题词表、追踪来源都根据你的研究方向现场生成，不绑定任何特定领域
+- **零依赖**：脚本只用 Python 标准库，无需 `pip install`，无需付费 API key（检索走 OpenAlex / arXiv 免费接口）
+- **数据在你手里**：文献清单是项目目录下的纯文本 JSONL，可 git 管理、可手动编辑
+- **凭据安全**：邮箱授权码只走环境变量，不写入任何文件
 
 ## 目录结构
 
 ```
 literature-tracker/
-├── SKILL.md                        # 技能主说明：五大工作模式与纪律
+├── SKILL.md                          # 技能主说明：能力、上手流程、五大工作模式
 ├── scripts/
-│   ├── fetch_papers.py             # 增量抓取：OpenAlex / arXiv / 期刊 RSS → JSONL
-│   ├── classify_papers.py          # 关键词主题分类（topics.json 可自定义词表）
-│   └── send_digest.py              # HTML 简报邮件推送（--dry-run 预览）
+│   ├── fetch_papers.py               # 增量抓取：OpenAlex / arXiv / 期刊 RSS → JSONL
+│   ├── classify_papers.py            # 按主题词表做关键词分类
+│   └── send_digest.py                # HTML 简报邮件推送（--dry-run 预览）
 ├── assets/
-│   ├── topics.json                 # 9 个研究方向的中英文关键词词表
-│   ├── journal_sources.json        # 89 个经管期刊 RSS 源（按层级分组）
-│   └── tracker_config.template.json # 用户配置模板
-└── references/
-    ├── push-setup.md               # 邮箱 SMTP 与 launchd/cron 定时推送配置
-    └── paper-explainer.md          # 文献精读讲解模板
+│   ├── tracker_config.template.json  # 用户配置模板
+│   └── examples/                     # 词表与期刊源的格式示例（农经领域，仅供参考）
+├── references/
+│   ├── push-setup.md                 # 邮箱 SMTP 与 launchd/cron 定时推送配置
+│   └── paper-explainer.md            # 文献精读讲解模板
 ```
 
 ## 手动使用脚本（不经过智能体也可以）
 
 ```bash
-# 抓取近 7 天文献
+# 抓取近 7 天文献（关键词换成你的方向）
 python3 literature-tracker/scripts/fetch_papers.py \
     --config tracker_config.json --state tracker_state.json --output new.jsonl
 
-# 按主题词表分类
+# 按你的主题词表分类
 python3 literature-tracker/scripts/classify_papers.py \
     --input new.jsonl --topics topics.json --require-match --output classified.jsonl
 
@@ -66,6 +74,6 @@ python3 literature-tracker/scripts/send_digest.py \
 
 ## 已知限制
 
-- 部分出版商 RSS 源会失效或反爬（脚本会跳过并记日志）；arXiv 和 OpenAlex 是可靠主力
+- 部分出版商 RSS 源会失效或反爬（脚本会跳过并记日志）；OpenAlex 和 arXiv 是可靠主力
 - 中文文献（知网/万方）无公开 API，需通过检索工具补充或手动录入
-- OpenAlex 在共享出口 IP 上可能触发限流（429），配置 `mailto` 可进入礼貌池
+- OpenAlex 在共享出口 IP 上可能触发限流（429），脚本会自动重试，配置邮箱 `mailto` 可进入礼貌池
