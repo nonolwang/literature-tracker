@@ -157,7 +157,11 @@ def main():
     username = email_cfg.get("username", "")
     password = os.environ.get(email_cfg.get("password_env", "QQ_SMTP_AUTH_CODE"), "")
     if not username or not password:
-        print("错误：缺少 SMTP 凭据。请设置 config 中的 username，并把授权码放入环境变量 %s"
+        print("错误：缺少 SMTP 凭据。", file=sys.stderr)
+        print("注意：QQ/163 等邮箱不允许用登录密码走 SMTP，必须使用网页端单独生成的【授权码】。", file=sys.stderr)
+        print("  QQ 邮箱：设置 → 账号 → POP3/SMTP 服务 → 生成授权码", file=sys.stderr)
+        print("  163 邮箱：设置 → POP3/SMTP/IMAP → 开启并获取授权码", file=sys.stderr)
+        print("然后：在 config 的 email.username 填入邮箱地址，并执行 export %s='你的授权码'"
               % email_cfg.get("password_env", "QQ_SMTP_AUTH_CODE"), file=sys.stderr)
         return 2
 
